@@ -1,0 +1,29 @@
+---
+- name: setup tomcat
+  hosts: all
+  become: yes
+  tasks:
+  - name: install java
+    yum:
+      name: java
+      state: installed
+  - name: download tomcat
+    get_url:
+      url: https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.76/bin/apache-tomcat-8.5.76.tar.gz
+      dest: /opt
+  - name: extraxt the file
+    unarchive:
+      src: /opt/apache-tomcat-8.5.76.tar.gz
+      dest: /opt
+      remote_src: yes 
+  - name: giving permissions
+    file:
+      path: /opt/apache-tomcat-8.5.76/bin/startup.sh
+      mode: 0777
+  - name: starting the service
+    shell: nohup ./startup.sh
+    args:
+      chdir: /opt/apache-tomcat-8.5.76/bin
+  - name: rename the file
+    command: mv /opt/apache-tomcat-8.5.76 /opt/tomcat1
+...    

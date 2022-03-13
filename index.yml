@@ -1,0 +1,11 @@
+---
+- name: copy index.html
+  hosts: all
+  become: yes
+  tasks: 
+  - name: copy index.html
+    copy:
+      src: /home/ansadmin/index.html
+      dest: /var/www/html
+      mode: 0777  
+...

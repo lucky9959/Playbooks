@@ -1,0 +1,22 @@
+---
+- name: copying a file
+  hosts: all
+  become: yes
+  tasks:
+  - name: copying a file
+    copy:
+      src: /home/ansadmin/revanthfile
+      dest: /home/ansadmin/revanthfile
+  - name: creating a directory
+    file:
+      path: /home/ansadmin/lucky
+      state: directory
+  - name: creating a file
+    file:
+      path: /home/ansadmin/lucky/r1
+      state: touch
+  - name: deleting a file
+    file: 
+      path: /home/ansadmin/lucky/r1
+      state: absent
+...

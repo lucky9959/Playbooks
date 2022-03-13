@@ -1,0 +1,7 @@
+---
+- name: installinng httpd using roles
+  hosts: all
+  become: true  
+  roles:
+  - roles1
+
